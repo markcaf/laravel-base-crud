@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 class ComicsTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeds for the Comics.
      *
      * @return void
      */
