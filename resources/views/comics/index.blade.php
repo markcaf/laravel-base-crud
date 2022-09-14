@@ -23,9 +23,17 @@
                         @forelse ($comics as $comic)
                             <tr>
                                 <th scope="row">{{ $comic->id }}</th>
-                                <td>{{ $comic->title }}</td>
+                                <td>
+                                    <a href="{{ route('comics.show', $comic->id) }}" class="link-light">
+                                        {{ $comic->title }}
+                                    </a>
+                                </td>
                                 <td>{{ $comic->description }}</td>
-                                <td><img src="{{ $comic->thumb }}" alt="{{ $comic->title }}"></td>
+                                <td>
+                                    <a href="{{ route('comics.show', $comic->id) }}">
+                                        <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
+                                    </a>
+                                </td>
                                 <td>{{ $comic->series }}</td>
                                 <td>{{ $comic->sale_date }}</td>
                                 <td>{{ $comic->type }}</td>
