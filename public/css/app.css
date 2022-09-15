@@ -10860,3 +10860,8 @@ textarea.form-control-lg {
   height: 600px;
   background-size: cover;
 }
+
+img {
+  width: 192px;
+  height: 291px;
+}
