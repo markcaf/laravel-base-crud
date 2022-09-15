@@ -24,13 +24,13 @@
                             <tr>
                                 <th scope="row">{{ $comic->id }}</th>
                                 <td>
-                                    <a href="{{ route('comics.show', $comic->id) }}" class="link-light">
+                                    <a href="{{ route('comics.show', $comic->slug) }}" class="link-light">
                                         {{ $comic->title }}
                                     </a>
                                 </td>
                                 <td>{{ $comic->description }}</td>
                                 <td>
-                                    <a href="{{ route('comics.show', $comic->id) }}">
+                                    <a href="{{ route('comics.show', $comic->slug) }}">
                                         <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
                                     </a>
                                 </td>
