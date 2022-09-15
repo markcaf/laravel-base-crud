@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
@@ -26,7 +27,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -37,7 +38,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sentData = $request->all();
+
+        $comic = new Comic();
+        
+        $comic->title = $sentData['title'];
+        $comic->description = $sentData['description'];
+        $comic->thumb = $sentData['thumb'];
+        $comic->price = $sentData['price'];
+        $comic->series = $sentData['series'];
+        $comic->sale_date = $sentData['sale_date'];
+        $comic->type = $sentData['type'];
+        $comic->slug = Str::slug( $comic->title, '-');
+
+        $comic->save();
+
+        return redirect()->route('comics.show', $comic->slug);
     }
 
     /**
