@@ -12,7 +12,7 @@
                       {{ $comic->type }} - {{ $comic->series }}
                     </div>
                     <div class="card_thumb text-center mt-3">
-                        <img src="{{ $comic->thumb }}" class="w-25" alt="{{ $comic->title }}">
+                        <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
                     </div>
                     <div class="card-body">
                       <h4 class="card-title">{{ $comic->title }}</h4>
