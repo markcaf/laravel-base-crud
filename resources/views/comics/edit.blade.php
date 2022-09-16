@@ -44,7 +44,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="type" class="form-label">Type</label>
-                        <input name="type" value="{{ $comic->type }}" type="text" class="form-control" id="type" aria-describedby="typeHelp" required>
+                        <select class="form-select" name="type" id="type" required >
+                            <option value="comic book" {{($comic->type == 'comic book') ? 'selected' : ''}}>Comic Book</option>
+                            <option value="graphic novel" {{$comic->type == 'graphic novel' ? 'selected' : ''}}>Graphic Novel</option>
+                            <option value="other" {{($comic->type == 'other') ? 'selected' : ''}}>Other</option>
+                        </select>
                         <div id="typeHelp" class="form-text">Insert here your comic's type (es. comic book).</div>
                     </div>
                     

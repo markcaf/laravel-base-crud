@@ -53,7 +53,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="type" class="form-label">Type</label>
-                        <input name="type" type="text" class="form-control" id="type" aria-describedby="typeHelp">
+                        <select class="form-select" name="type" id="type" required>
+                            <option value="comic book">Comic Book</option>
+                            <option value="graphic novel">Graphic Novel</option>
+                            <option value="other">Other</option>
+                        </select>
                         <div id="typeHelp" class="form-text">Insert here your comic's type (es. comic book).</div>
                     </div>
                     
