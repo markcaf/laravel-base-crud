@@ -89,9 +89,23 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $sentData = $request->all();
+
+        $comic = Comic::where('slug', $slug)->first();
+
+        $comic->title = $sentData['title'];
+        $comic->description = $sentData['description'];
+        $comic->thumb = $sentData['thumb'];
+        $comic->price = $sentData['price'];
+        $comic->series = $sentData['series'];
+        $comic->sale_date = $sentData['sale_date'];
+        $comic->type = $sentData['type'];
+        $comic->slug = Str::slug( $comic->title, '-');
+        $comic->save();
+
+        return redirect()->route('comics.show', $comic->slug);
     }
 
     /**
