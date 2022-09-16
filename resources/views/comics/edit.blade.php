@@ -8,9 +8,10 @@
             <div class="col-6">
 
                 {{-- Specifico rotta e metodo del form --}}
-                <form action="{{ route('comics.store') }}" method="POST">
+                <form action="{{ route('comics.update', $comic->slug) }}" method="POST">
                     {{-- Inserisco CSRF di sicurezza di Laravel --}}
                     @csrf
+                    @method('PUT')
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
@@ -48,7 +49,7 @@
                     </div>
                     
                     <div class="text-center mt-5">
-                        <button type="submit" class="btn btn-lg btn-primary text-uppercase fw-bold">Submit your comic</button>
+                        <button type="submit" class="btn btn-lg btn-primary text-uppercase fw-bold">Edit your comic</button>
                     </div>
                 </form>
 
