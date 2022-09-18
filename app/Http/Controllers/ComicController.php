@@ -8,6 +8,21 @@ use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
+    
+    protected $validationRules = [
+        'title' => 'required|string|min:3|max:255|unique:comics,title',
+        'description' => 'required|min:3|string',
+        'thumb' => 'required|active_url',
+        'price' => 'required|numeric',
+        'series' => 'required|string|min:3|max:255',
+        'sale_date' => 'required|date',
+        'type' => 'required|exists:comics,type',
+    ];
+
+    protected $customValidationMessages = [
+        'type.exists' => 'The selected type is not available between the current types of comics, choose from the select.',
+    ];
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +42,8 @@ class ComicController extends Controller
      */
     public function create()
     {
-        return view('comics.create');
+        $comic = new Comic();
+        return view('comics.create', compact('comic'));
     }
 
     /**
@@ -39,6 +55,8 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         $sentData = $request->all();
+
+        $validatedData = $request -> validate($this->validationRules, $this->customValidationMessages);
 
         $comic = new Comic();
         $sentData['slug'] = Str::slug( $sentData['title'], '-');
@@ -84,6 +102,8 @@ class ComicController extends Controller
     public function update(Request $request, $slug)
     {
         $sentData = $request->all();
+
+        $validatedData = $request -> validate($this->validationRules, $this->customValidationMessages);
 
         $comic = Comic::where('slug', $slug)->first();
         $sentData['slug'] = Str::slug( $sentData['title'], '-');
