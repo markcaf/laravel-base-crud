@@ -5,6 +5,17 @@
 @section('main-content')
     <div class="container my-5 py-2">
         <div class="row">
+            @if ( session('created'))
+                <div class="alert alert-success">
+                    "{{ session('created') }}" has been successfully created.
+                </div>
+            @endif
+
+            @if ( session('edited'))
+                <div class="alert alert-success">
+                    "{{ session('edited') }}" has been successfully edited.
+                </div>
+            @endif
             <div class="col-12">
                 
                 <div class="card text-center text-white bg-dark">
