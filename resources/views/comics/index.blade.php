@@ -5,6 +5,11 @@
 @section('main-content')
     <div class="container my-5 py-2">
         <div class="row">
+            @if ( session('deleted'))
+                <div class="alert alert-warning">
+                    "{{ session('deleted') }}" has been successfully deleted.
+                </div>
+            @endif
             <div class="col-12">
                 <table class="table table-dark table-striped table-hover">
                     <thead>
