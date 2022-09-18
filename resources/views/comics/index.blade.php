@@ -51,7 +51,8 @@
                                 </td>
                                 <td>
 
-                                    <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                    <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="form-comic-delete"
+                                        data-comic-name="{{ $comic->title }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">Remove</button>
@@ -71,4 +72,22 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer-scripts')
+    <script>
+        const deleteFormElements = document.querySelectorAll('.form-comic-delete');
+
+        deleteFormElements.forEach(
+            formElement => {
+                formElement.addEventListener('submit', function(event){
+                    const name = this.getAttribute('data-comic-name');
+
+                    event.preventDefault(); //blocco l'esecuzione automatica dell'evento di default
+                    const result = window.confirm(`Are you sure you want to delete "${name}"?`); //chiedo conferma della cancellazione con un window confirm
+                    if (result) this.submit(); //se l'utente risponde in maniera affermativa allora invio la submit
+                })
+            }
+        )
+    </script>
 @endsection
