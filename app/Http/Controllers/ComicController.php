@@ -74,7 +74,7 @@ class ComicController extends Controller
      */
     public function show($slug)
     {
-        $comic = Comic::where('slug', $slug)->first();
+        $comic = Comic::where('slug', $slug)->firstOrFail();
 
         return view('comics.show', compact('comic'));
     }
@@ -87,7 +87,7 @@ class ComicController extends Controller
      */
     public function edit($slug)
     {
-        $comic = Comic::where('slug', $slug)->first();
+        $comic = Comic::where('slug', $slug)->firstOrFail();
         
         return view('comics.edit', compact('comic'));
     }
@@ -105,7 +105,7 @@ class ComicController extends Controller
 
         $validatedData = $request -> validate($this->validationRules, $this->customValidationMessages);
 
-        $comic = Comic::where('slug', $slug)->first();
+        $comic = Comic::where('slug', $slug)->firstOrFail();
         $sentData['slug'] = Str::slug( $sentData['title'], '-');
         
         $comic->update($sentData);
